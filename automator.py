@@ -123,9 +123,8 @@ def set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid):
     for row_i in range(len(keyboard_positions)):
         key_coords = keyboard_positions[row_i]
         rgbs = rgb_values_grid[row_i]
-        for key_i in range(len(key_coords)):
-            # 檢查是否需要停止自動化
 
+        for key_i in range(len(key_coords)):
             key_coord = key_coords[key_i]
             rgb = rgbs[key_i]
 
@@ -137,7 +136,7 @@ def set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid):
                     )
                 pyautogui.press('right', presses=3)
                 pyautogui.press('backspace', presses=3)
-                pyautogui.typewrite(f"{rgb[rgb_i]}")
+                pyautogui.typewrite(f"{int(rgb[rgb_i])}")
 
             # 點選鍵盤位置、賦予該鍵 RGB
             pyautogui.click(
@@ -145,4 +144,16 @@ def set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid):
                 key_coord[1]*screen_height/100
                 )
 
- 
+@get_window
+def clean_up_color(keyboard_positions):
+    screen_width, screen_height = pyautogui.size()
+
+    for row_i in range(len(keyboard_positions)):
+        key_coords = keyboard_positions[row_i]
+
+        for key_i in range(len(key_coords)):
+            key_coord = key_coords[key_i]
+            pyautogui.click(
+                key_coord[0]*screen_width/100,
+                key_coord[1]*screen_height/100
+                )
