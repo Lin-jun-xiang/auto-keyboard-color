@@ -118,20 +118,14 @@ def set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid):
     # 获取屏幕大小
     screen_width, screen_height = pyautogui.size()
 
-    # 定义按键事件的处理函数
-    def on_key_press(event):
-        if event.name == KEY_TO_STOP:
-            # 如果用户按下停止键，停止监听
-            raise KeyboardInterrupt
-
-    # 注册按键事件监听器
-    keyboard.on_press(on_key_press)
-
     # 遍歷鍵盤座標、鍵盤座標對應的 rgb 值
+
     for row_i in range(len(keyboard_positions)):
         key_coords = keyboard_positions[row_i]
         rgbs = rgb_values_grid[row_i]
         for key_i in range(len(key_coords)):
+            # 檢查是否需要停止自動化
+
             key_coord = key_coords[key_i]
             rgb = rgbs[key_i]
 
@@ -143,13 +137,12 @@ def set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid):
                     )
                 pyautogui.press('right', presses=3)
                 pyautogui.press('backspace', presses=3)
-                # time.sleep(1)
                 pyautogui.typewrite(f"{rgb[rgb_i]}")
-                # time.sleep(.5)
 
             # 點選鍵盤位置、賦予該鍵 RGB
             pyautogui.click(
                 key_coord[0]*screen_width/100,
                 key_coord[1]*screen_height/100
                 )
-            # time.sleep(1)
+
+ 
