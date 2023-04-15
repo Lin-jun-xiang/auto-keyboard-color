@@ -1,35 +1,42 @@
-from PIL import Image
-
-# 读取图像
-image = Image.open('./image/船底座星雲.jpg')
-
-# 定义網格大小
-n, m = 6, 10
-
-# 将图像分割成 nxm 个矩形，获取每个矩形的 RGB 值
-pixels = list(image.getdata())
-pixel_count = len(pixels)
-grid_size = pixel_count / (n * m)
-grid_colors = []
-
-for i in range(n * m):
-    start = int(i * grid_size)
-    end = int((i + 1) * grid_size)
-    grid = pixels[start:end]
-    avg_color = tuple(int(sum(channel) / len(channel)) for channel in zip(*grid))
-    grid_colors.append(avg_color)
+from automator import get_positions, set_keyboard_colors
+from image_color import get_color_grid
+from config import IMG_PATH
+import winsound
+import json
 
 
+while True:
+    positions_file = input("Already Have Positions Data ? (y/n)")
 
+    if positions_file == 'y':
+        # 從文本文件中讀取 JSON 數據
+        with open('./data/keyboard_data.txt', 'r') as file:
+            keyboard_positions = json.load(file)
 
-# # 循环遍历每个矩形并点击相应的键盘颜色
-# for i in range(n * m):
-#     color = grid_colors[i]
-#     # 设置键盘颜色
-#     # ...
+        with open('./data/RGB_data.txt', 'r') as file:
+            rgb_positions = json.load(file)
 
-#     # 点击键盘
-#     # ...
+        break
 
-#     # 等待一段时间
-#     # ...
+    if positions_file == 'n':
+        # 取得驅動軟體上的
+        keyboard_positions = get_positions('keyboard')
+
+        with open('./data/keyboard_data.txt', 'w') as file:
+            json.dump(keyboard_positions, file)
+
+        # 取得驅動軟體上的 RGB設置 座標
+        rgb_positions = get_positions('RGB setting')
+
+        with open('./data/rgb_data.txt', 'w') as file:
+            json.dump(rgb_positions, file)
+
+        break
+
+rgb_values_grid = get_color_grid(IMG_PATH, keyboard_positions)
+
+print(rgb_values_grid, type(rgb_values_grid))
+
+set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid)
+
+winsound.Beep(440, 500)
