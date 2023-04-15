@@ -4,7 +4,6 @@ from config import IMG_PATH
 import winsound
 import json
 
-
 while True:
     positions_file = input("Already Have Positions Data ? (y/n)")
 
@@ -19,7 +18,7 @@ while True:
         break
 
     if positions_file == 'n':
-        # 取得驅動軟體上的
+        # 取得驅動軟體上的座標
         keyboard_positions = get_positions('keyboard')
 
         with open('./data/keyboard_data.txt', 'w') as file:

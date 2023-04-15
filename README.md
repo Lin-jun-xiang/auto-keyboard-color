@@ -21,3 +21,10 @@ def get_all_windows() -> None:
     for window in windows:
         print(f'{window.title}')
 ```
+
+### 體驗鼠標追蹤
+```python
+import pyautogui
+
+pyautogui.displayMousePosition()
+```

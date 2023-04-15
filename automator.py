@@ -4,14 +4,18 @@ import keyboard
 import pyautogui
 from config import KEY_TO_RECORD, KEY_TO_SPLIT, KEY_TO_STOP, WINDOW_TITLE
 
-
 def get_window(func):
     @wraps(func)
     def wrapper(*arg, **kwarg):
         try:
             # 將視窗設置為活動視窗
-            pyautogui.getWindowsWithTitle(WINDOW_TITLE)[0].maximize()
+            window = pyautogui.getWindowsWithTitle(WINDOW_TITLE)[0]
+            # window.activate()
+            window.maximize()
+
             print(f'Listening {WINDOW_TITLE} now')
+            time.sleep(2)
+
             value = func(*arg, **kwarg)
         except Exception as e:
             print(e)
@@ -36,8 +40,8 @@ def get_positions(record_target: str):
             # 如果用户按下要记录的键，记录鼠标位置
             x, y = pyautogui.position()
             # 将坐标转换为通用的坐标系
-            x = int(x * 100 / screen_width)
-            y = int(y * 100 / screen_height)
+            x = x * 100 / screen_width
+            y = y * 100 / screen_height
             click_positions.append((x, y))
         elif event.name == KEY_TO_SPLIT:
             # 如果用户按下分段键，记录特殊坐标 (-1, -1)
@@ -114,6 +118,15 @@ def set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid):
     # 获取屏幕大小
     screen_width, screen_height = pyautogui.size()
 
+    # 定义按键事件的处理函数
+    def on_key_press(event):
+        if event.name == KEY_TO_STOP:
+            # 如果用户按下停止键，停止监听
+            raise KeyboardInterrupt
+
+    # 注册按键事件监听器
+    keyboard.on_press(on_key_press)
+
     # 遍歷鍵盤座標、鍵盤座標對應的 rgb 值
     for row_i in range(len(keyboard_positions)):
         key_coords = keyboard_positions[row_i]
@@ -130,13 +143,13 @@ def set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid):
                     )
                 pyautogui.press('right', presses=3)
                 pyautogui.press('backspace', presses=3)
-                time.sleep(1)
+                # time.sleep(1)
                 pyautogui.typewrite(f"{rgb[rgb_i]}")
-                time.sleep(.5)
+                # time.sleep(.5)
 
             # 點選鍵盤位置、賦予該鍵 RGB
             pyautogui.click(
                 key_coord[0]*screen_width/100,
                 key_coord[1]*screen_height/100
                 )
-            time.sleep(1)
+            # time.sleep(1)
