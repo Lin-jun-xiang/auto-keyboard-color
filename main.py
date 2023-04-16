@@ -38,6 +38,7 @@ cleanup = input('Do u want to cleanup color first ? (y/n)')
 if cleanup.lower() == 'y':
     clean_up_color(keyboard_positions)
 
+print(rgb_values_grid)
 set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid)
 
 winsound.Beep(440, 500)

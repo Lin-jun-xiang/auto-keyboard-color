@@ -128,15 +128,17 @@ def set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid):
             key_coord = key_coords[key_i]
             rgb = rgbs[key_i]
 
-            # 使用 RGB設定座標 輸入 RGB 值
-            for rgb_i in range(len(rgb_positions)):
-                pyautogui.click(
-                    rgb_positions[rgb_i][0]*screen_width/100,
-                    rgb_positions[rgb_i][1]*screen_height/100
-                    )
-                pyautogui.press('right', presses=3)
-                pyautogui.press('backspace', presses=3)
-                pyautogui.typewrite(f"{int(rgb[rgb_i])}")
+            if key_i != 0 and rgb != rgbs[key_i - 1]:
+                # 如果當前 rgb 與前一次 rgb 不一樣，再做設定
+                # 使用 RGB設定座標 輸入 RGB 值
+                for rgb_i in range(len(rgb_positions)):
+                    pyautogui.click(
+                        rgb_positions[rgb_i][0]*screen_width/100,
+                        rgb_positions[rgb_i][1]*screen_height/100
+                        )
+                    pyautogui.press('right', presses=3)
+                    pyautogui.press('backspace', presses=3)
+                    pyautogui.typewrite(f"{int(rgb[rgb_i])}")
 
             # 點選鍵盤位置、賦予該鍵 RGB
             pyautogui.click(
