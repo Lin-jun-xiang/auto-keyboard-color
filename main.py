@@ -41,4 +41,4 @@ if cleanup.lower() == 'y':
 print(rgb_values_grid)
 set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid)
 
-winsound.Beep(440, 500)
+winsound.PlaySound('exclamation', winsound.SND_ALIAS)
