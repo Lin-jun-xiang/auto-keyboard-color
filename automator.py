@@ -128,7 +128,7 @@ def set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid):
             key_coord = key_coords[key_i]
             rgb = rgbs[key_i]
 
-            if key_i != 0 and rgb != rgbs[key_i - 1]:
+            if key_i == 0 or (key_i != 0 and rgb != rgbs[key_i - 1]):
                 # 如果當前 rgb 與前一次 rgb 不一樣，再做設定
                 # 使用 RGB設定座標 輸入 RGB 值
                 for rgb_i in range(len(rgb_positions)):
