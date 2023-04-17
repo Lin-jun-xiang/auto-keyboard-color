@@ -54,4 +54,8 @@ def get_color_grid(image_file, grid):
 
                 # 存儲色調到結果矩陣中
                 result[row][col] = (avg_color[0], avg_color[1], avg_color[2])
+
+    # 存儲各網格的 rgb 值
+    np.savetxt('./data/color_grid_data.txt', result, delimiter=' ', fmt='%s')
+
     return result

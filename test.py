@@ -42,6 +42,7 @@ for row in range(num_rows):
 
             # 存儲色調到結果矩陣中
             result[row][col] = "rgb({},{},{})".format(avg_color[0], avg_color[1], avg_color[2])
-print(result)
+
+np.savetxt('./data/color_grid_data.txt', result, delimiter=' ', fmt='%s')
 
 
