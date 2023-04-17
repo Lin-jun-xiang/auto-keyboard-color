@@ -13,7 +13,7 @@ def get_window(func):
             # window.activate()
             window.maximize()
 
-            print(f'Listening {WINDOW_TITLE} now')
+            print(f'\033[33mListening {WINDOW_TITLE} now')
             time.sleep(2)
 
             value = func(*arg, **kwarg)
@@ -30,9 +30,9 @@ def get_positions(record_target: str):
     # 定义记录位置的列表
     click_positions = []
 
-    print(f'Press "{KEY_TO_RECORD}" to record {record_target}.\n',
-          f'Press "{KEY_TO_SPLIT}" to split the record.\n',
-          f'Press "{KEY_TO_STOP}" to stop record.')
+    print(f'Press \033[36m"{KEY_TO_RECORD}" to record {record_target}.\n',
+          f'Press \033[36m"{KEY_TO_SPLIT}" to split the record.\n',
+          f'Press \033[36m"{KEY_TO_STOP}" to stop record.')
 
     # 定义按键事件的处理函数
     def on_key_press(event):
