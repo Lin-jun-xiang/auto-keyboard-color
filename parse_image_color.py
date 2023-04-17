@@ -45,7 +45,7 @@ def get_color_grid(image_file, grid):
                 color = tuple(image.getpixel((col, row)))
 
                 # 存儲色調到結果矩陣中
-                result[row][col] = "rgb({},{},{})".format(color[0], color[1], color[2])
+                result[row][col] = color[0], color[1], color[2]
                 result_str[row][col] = "rgb({},{},{})".format(color[0], color[1], color[2])
 
     np.savetxt('./data/color_grid_data.txt', result_str, delimiter=' ', fmt='%s')
