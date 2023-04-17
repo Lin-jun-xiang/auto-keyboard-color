@@ -34,11 +34,10 @@ while True:
 
 rgb_values_grid = get_color_grid(IMG_PATH, keyboard_positions)
 
-cleanup = input('Do u want to cleanup color first ? (y/n)')
+cleanup = input('\033[35mDo u want to cleanup color first ? (y/n)')
 if cleanup.lower() == 'y':
     clean_up_color(keyboard_positions)
 
-print(rgb_values_grid)
 set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid)
 
 winsound.PlaySound('exclamation', winsound.SND_ALIAS)

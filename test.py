@@ -36,3 +36,12 @@ for row in range(num_rows):
             result[row][col] = "rgb({},{},{})".format(color[0], color[1], color[2])
 
 np.savetxt('./data/color_grid_data.txt', result, delimiter=' ', fmt='%s')
+
+
+image_file = './image/螢幕擷取畫面 2023-04-17 192044.png'
+
+# 讀取圖片檔，將它轉換為 PIL.Image.Image 對象
+image = Image.open(image_file)
+[i * 2 for i in image.size]
+image = image.resize((1800, 1300))
+image.save('./image/t.png')

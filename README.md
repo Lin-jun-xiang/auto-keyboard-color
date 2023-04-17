@@ -2,6 +2,7 @@
 
 * 需求
     * `Python`
+    * 鍵盤驅動軟體
 
 ---
 
@@ -12,6 +13,8 @@
 ### 功能
 * 將圖片檔案離散成 RGB 像素
 * 將像素自動化設定至鍵盤背光
+* 自動清除鍵盤背光 (初始化)
+
 
 ### 方法
 
@@ -25,7 +28,7 @@ def get_all_windows() -> None:
         print(f'{window.title}')
 ```
 
-### 體驗鼠標追蹤
+### 鼠標追蹤測試
 ```python
 import pyautogui
 
