@@ -3,17 +3,14 @@ import json
 import numpy as np
 from PIL import Image, ImageDraw
 
-with open('./potsition_data/keyboard_data.txt', 'r') as file:
+with open('./data/keyboard_pos_data.txt', 'r') as file:
     keyboard_positions = json.load(file)
 
 grid = keyboard_positions
-image_file = './image/2.png'
+image_file = './image/4.png'
 
 # 讀取圖片檔，將它轉換為 PIL.Image.Image 對象
 image = Image.open(image_file)
-
-# 將圖片檔進行上下左右顛倒
-image = image.transpose(method=Image.FLIP_TOP_BOTTOM).transpose(method=Image.FLIP_LEFT_RIGHT)
 
 # 計算網格的行和列
 num_rows = len(grid)
