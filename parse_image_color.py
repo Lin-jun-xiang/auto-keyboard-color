@@ -24,6 +24,9 @@ def get_color_grid(image_file, grid):
     # 讀取圖片檔，將它轉換為 PIL.Image.Image 對象
     image = Image.open(image_file)
 
+    # 將圖片檔進行上下左右顛倒
+    image = image.transpose(method=Image.FLIP_TOP_BOTTOM).transpose(method=Image.FLIP_LEFT_RIGHT)
+
     # 計算網格的行和列
     num_rows = len(grid)
     num_cols = max(len(row) for row in grid)
@@ -33,29 +36,20 @@ def get_color_grid(image_file, grid):
     grid_height = image.height / num_rows
 
     # 調整圖像大小為網格大小
-    image = image.resize((int(num_cols * grid_width), int(num_rows * grid_height)))
-
-    # 將圖像轉換為numpy array
-    image_array = np.array(image)
+    image = image.resize((int(num_cols), int(num_rows)))
 
     # 建立一個新的矩陣來存儲結果
     result = np.empty((num_rows, num_cols), dtype=object)
 
-    # 分配圖像色調到網格
     for row in range(num_rows):
         for col in range(len(grid[row])):
             if grid[row][col]:
-                # 計算網格中心點的位置
-                center_x = int((col + 0.5) * grid_width)
-                center_y = int((row + 0.5) * grid_height)
-
-                # 取得中心像素的顏色
-                avg_color = tuple(image.getpixel((center_x, center_y)))
+                # 取得像素的顏色
+                color = tuple(image.getpixel((col, row)))
 
                 # 存儲色調到結果矩陣中
-                result[row][col] = (avg_color[0], avg_color[1], avg_color[2])
+                result[row][col] = "rgb({},{},{})".format(color[0], color[1], color[2])
 
-    # 存儲各網格的 rgb 值
     np.savetxt('./data/color_grid_data.txt', result, delimiter=' ', fmt='%s')
 
     return result
