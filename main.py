@@ -39,7 +39,7 @@ if cleanup.lower() == 'y':
     clean_up_color(keyboard_positions)
 
 setup = input('\033[35m[Automated]Do u want to setup keyboard color ? (y/n)')
-if cleanup.lower() == 'y':
-    set_keyboard_colors(keyboard_positions, rgb_positions)
+if setup.lower() == 'y':
+    set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid)
 
 winsound.PlaySound('exclamation', winsound.SND_ALIAS)
