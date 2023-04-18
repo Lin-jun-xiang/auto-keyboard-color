@@ -1,11 +1,11 @@
 from automator import get_positions, set_keyboard_colors, clean_up_color
 from parse_image_color import get_color_grid
-from config import IMG_PATH
+from config import IMG_PATH, RGB_NUM
 import winsound
 import json
 
 while True:
-    positions_file = input("Already Have Positions Data ? (y/n)")
+    positions_file = input("\033[35m[Automated]Already Have Positions Data ? (y/n)")
 
     if positions_file.lower() == 'y':
         # 從文本文件中讀取 JSON 數據
@@ -32,14 +32,14 @@ while True:
 
         break
 
-rgb_values_grid = get_color_grid(IMG_PATH, keyboard_positions)
+rgb_values_grid = get_color_grid(IMG_PATH, RGB_NUM, keyboard_positions)
 
-cleanup = input('\033[35mDo u want to cleanup color first ? (y/n)')
+cleanup = input('\033[35m[Automated]Do u want to cleanup color first ? (y/n)')
 if cleanup.lower() == 'y':
     clean_up_color(keyboard_positions)
 
-setup = input('\033[35mDo u want to setup keyboard color ? (y/n)')
+setup = input('\033[35m[Automated]Do u want to setup keyboard color ? (y/n)')
 if cleanup.lower() == 'y':
-    set_keyboard_colors(keyboard_positions, rgb_positions, rgb_values_grid)
+    set_keyboard_colors(keyboard_positions, rgb_positions)
 
 winsound.PlaySound('exclamation', winsound.SND_ALIAS)
