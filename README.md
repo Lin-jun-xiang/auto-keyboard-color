@@ -68,6 +68,7 @@ def get_all_windows() -> None:
         print(f'{window.title}')
 ```
 
+
 ---
 
 ### 鼠標追蹤測試
