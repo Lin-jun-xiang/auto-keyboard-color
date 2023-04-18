@@ -8,7 +8,8 @@ def get_color_grid(image_file: str, rgb_num: int, grid):
 
     Args:
         image_file (str): 圖像檔案的路徑。
-        grid (List[List[bool]]): 一個包含布林值的二維矩陣，用於指定哪些網格應該被分配圖像色調。
+        rgb_num (int): 主要 RGB 成分之數量 
+        grid (List[List[float]]): 一個包含布林值的二維矩陣，用於指定哪些網格應該被分配圖像色調。
 
     Returns:
         np.ndarray: 一個包含結果的二維 numpy 矩陣。每個元素都是一個包含 RGB 顏色值的字符串。
@@ -16,10 +17,6 @@ def get_color_grid(image_file: str, rgb_num: int, grid):
     Raises:
         TypeError: 如果 image_file 不是 str 型態或 grid 不是 List[List[bool]] 型態。
 
-    Example:
-        image_file = "example.jpg"
-        grid = [[True, False, True], [False, True, False]]
-        result = assign_image_to_grid(image_file, grid)
     """
 
     # 讀取圖片檔，將它轉換為 PIL.Image.Image 對象
