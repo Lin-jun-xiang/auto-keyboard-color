@@ -81,3 +81,16 @@ pyautogui.displayMousePosition()
 ---
 
 ### 範例 (新盟x75)
+
+##### 自動化設定 RGB
+
+輸入 `image.png/jpg`，將 RGB 解析並設定在驅動軟體上
+
+   ![RGB_setup](https://github.com/Lin-jun-xiang/automate-keyboard-color/blob/main/demo_video/automator_setup.gif?raw=true)
+
+#### 自動化清除 RGB (初始化)
+
+   ![RGB_cleanup](https://github.com/Lin-jun-xiang/automate-keyboard-color/blob/main/demo_video/automator_cleanup.gif?raw=true)
+
+
+
