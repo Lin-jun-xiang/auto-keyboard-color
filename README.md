@@ -88,7 +88,7 @@ pyautogui.displayMousePosition()
 
    ![RGB_setup](https://github.com/Lin-jun-xiang/automate-keyboard-color/blob/main/demo_video/automator_setup.gif?raw=true)
 
-#### 自動化清除 RGB (初始化)
+##### 自動化清除 RGB (初始化)
 
    ![RGB_cleanup](https://github.com/Lin-jun-xiang/automate-keyboard-color/blob/main/demo_video/automator_cleanup.gif?raw=true)
 
