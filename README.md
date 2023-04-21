@@ -1,3 +1,7 @@
+<div>
+    <img src="https://readme-typing-svg.demolab.com/?pause=1&size=50&color=e065b3&center=True&width=1200&height=120&vCenter=True&lines=點選+⭐+Star+給予+開發者+支持;任何問題+皆可於+Issue+討論!" />
+</div>
+
 ## 自動化鍵盤背光設定
 
 * 需求
