@@ -2,7 +2,7 @@ import time
 from functools import wraps
 import keyboard
 import pyautogui
-from config import KEY_TO_RECORD, KEY_TO_SPLIT, KEY_TO_STOP, WINDOW_TITLE
+from config import KEY_TO_RECORD, KEY_TO_SPLIT, KEY_TO_STOP, WINDOW_TITLE, TIME_LATENCY
 
 def get_window(func):
     @wraps(func)
@@ -14,7 +14,7 @@ def get_window(func):
             window.maximize()
 
             print(f'\033[33mListening {WINDOW_TITLE} now')
-            time.sleep(2)
+            time.sleep(TIME_LATENCY)
 
             value = func(*arg, **kwarg)
         except Exception as e:
