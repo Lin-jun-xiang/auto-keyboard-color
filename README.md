@@ -8,8 +8,7 @@
     * `Python`
     * 鍵盤驅動軟體
 
-* 詳細中文教學影片
-    ![]
+* 詳細中文教學[影片](https://www.bilibili.com/video/BV1sT411n7Ue/)
 
 <p align=center>
 <image src="https://user-images.githubusercontent.com/63782903/233771007-e0dbf3d3-ca8c-48ad-8a9d-7b0f185b08e6.png" width="60%" />
