@@ -8,6 +8,8 @@
     * `Python`
     * 鍵盤驅動軟體
 
+* 詳細中文教學影片
+    ![]
 ---
 
 ### 檔案說明及結構
@@ -23,6 +25,7 @@
 * `parse_image_color.py`: 負責解析圖片 RGB 的程序
 
 * `config.py`: 設置檔案，包含 **"錄製相關快捷鍵"、"輸入圖片檔"、"控制介面"**...等
+
 * `main.py`: 主要執行程式
 
 
@@ -51,6 +54,8 @@
 
 * **鼠標快速移到螢幕左上角，可強制終止程序執行**
 
+* **初次**使用該程序，須**先進行鼠標座標錄製**，紀錄 `/data/keyboard_pos_date.txt`、`/data/rgb_pos_data.txt`
+
 ---
 
 ### 功能
@@ -62,16 +67,50 @@
 
 ### 方法
 
-```python
-# 確認驅動軟體視窗名稱
-def get_all_windows() -> None:
-    import pyautogui
+1. 獲取驅動軟體視窗
+    ```python
+    # 確認驅動軟體視窗名稱
+    def get_all_windows() -> None:
+        import pyautogui
 
-    windows = pyautogui.getAllWindows()
-    for window in windows:
-        print(f'{window.title}')
-```
+        windows = pyautogui.getAllWindows()
+        for window in windows:
+            print(f'{window.title}')
+    ```
 
+2. 定義 `config.py`
+    ```python
+    # 定义监听的按键
+    KEY_TO_RECORD = 'space' # 每次按下 space 即記錄當前鼠標座標
+    KEY_TO_STOP = 'ctrl+c' # 按下 ctrl+c 即暫停當前錄製
+    KEY_TO_SPLIT = 's'  # 按下 s 即提示程序分段
+
+    # 定義輸入圖片路徑
+    IMG_PATH = './image/四色.png'
+
+    # 定義 RGB value 數量
+    # 例如一張圖片60%紅色、30%藍色、10%白色，RGB_NUM=2，就萃取最大成分的紅、藍 (RGB_NUM=-1，全取)
+    RGB_NUM = -1
+
+    # 定義目標視窗 Title
+    WINDOW_TITLE = 'X75 RGB Keyboard'
+
+    # 定義詢問與執行自動化的時間區間
+    TIME_LATENCY = 3
+    ```
+
+3. 執行 `main.py`，並先記錄鼠標座標
+
+    * `[Automated]Already Have Positions Data ? (y/n)`: 選擇 `n`，並開始進行錄製
+    * 參考 `config.py` 監聽按鍵及影片教學
+
+4. 清除當前鍵盤背光 (初始化)
+
+    * `[Automated]Do u want to cleanup color first ? (y/n)`: 選擇 `y` 清除
+
+5. 進行自動設定背光
+
+    * `[Automated]Do u want to setup keyboard color ? (y/n)`: 選擇 `y` 設定
 
 ---
 
@@ -95,6 +134,10 @@ pyautogui.displayMousePosition()
 ##### 自動化清除 RGB (初始化)
 
    ![RGB_cleanup](https://github.com/Lin-jun-xiang/automate-keyboard-color/blob/main/demo_video/automator_cleanup.gif?raw=true)
+
+##### 成果
+
+    ![]
 
 
 
