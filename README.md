@@ -10,6 +10,11 @@
 
 * 詳細中文教學影片
     ![]
+
+<p align=center>
+<image src="https://user-images.githubusercontent.com/63782903/233771007-e0dbf3d3-ca8c-48ad-8a9d-7b0f185b08e6.png" width="60%" />
+</p>
+
 ---
 
 ### 檔案說明及結構
@@ -137,7 +142,9 @@ pyautogui.displayMousePosition()
 
 ##### 成果
 
-    ![]
+   ![X75_demo](https://github.com/Lin-jun-xiang/automate-keyboard-color/blob/main/demo_video/automator_x75.gif?raw=true)
+    
+---
 
 
 
